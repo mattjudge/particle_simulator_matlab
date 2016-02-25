@@ -41,9 +41,8 @@ while true
 %     gravity_force=diag(ms)*r2recip*ms.*6.67e-34
 
     particles(:,5:6) = force ./ repmat(particles(:,8), 1, 2);  % acceleration
-    disp(particles(:,5:6));
     particles(:,3:4) = particles(:,3:4) + particles(:,5:6) .* dt;  % velocity
-    particles(:,1:2) = particles(:,1:2) + particles(:,5:6) .* dt;  % position
+    particles(:,1:2) = particles(:,1:2) + particles(:,3:4) .* dt;  % position
     
     c = sign(particles(:,7));
     c(c==-1) = 2;
@@ -55,5 +54,4 @@ while true
 %     disp(particles(:,1:2));
     
     pause(dt);
-%     break;
 end
